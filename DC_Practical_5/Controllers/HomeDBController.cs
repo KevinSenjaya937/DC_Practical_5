@@ -10,7 +10,7 @@ namespace DC_Practical_5.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Home Pages";
 
             return View();
         }
