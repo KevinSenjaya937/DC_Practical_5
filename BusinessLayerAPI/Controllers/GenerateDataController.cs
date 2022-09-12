@@ -1,4 +1,5 @@
 ﻿using DC_Practical_5.Models;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,14 @@ namespace BusinessLayerAPI.Controllers
         [Route("generate")]
         public void GenerateData()
         {
-            RestRequest request = new RestRequest("api/customer/post");
+            RestRequest request = new RestRequest("api/customer", Method.Post);
             Customer customer = new Customer();
 
             for (int i = 0; i < 100; i++)
             {
                 customer = GetNextAccount(customer);
-                request.AddJsonBody(customer);
-                client.Post(request);
+                request.AddJsonBody(JsonConvert.SerializeObject(customer));
+                RestResponse response = client.Execute(request);
             }
         }
 
